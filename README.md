@@ -48,8 +48,6 @@ API data may include:
 * Release date
 * Rating
 * Genre
-* Description
-* Other available details
 
 ## Live Demo
 
