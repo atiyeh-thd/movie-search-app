@@ -7,7 +7,7 @@ async function film(){
                 return;
             }
 
-            movieDiv.innerHTML = `<p>Searching...⏳</p>`;
+            movieDiv.innerHTML = `<p>Searching...</p>`;
 
             try{
                 let response = await fetch(`https://www.omdbapi.com/?t=${movieName}&plot=full&apikey=961bfb5b`);
@@ -16,7 +16,7 @@ async function film(){
                 if(data.Response === "False"){
                     movieDiv.innerHTML = `
                         <p style="color:red; font-weight:bold;">
-                             No film with this name was found.❌
+                             No film with this name was found.
                         </p>
                     `;
                     return;
@@ -28,7 +28,7 @@ async function film(){
                         <p>Year: ${data.Year}</p>
                         <p>Genre: ${data.Genre}</p>
                         <p>Director: ${data.Director}</p>
-                        <p>Score: ${data.imdbRating} ⭐</p>
+                        <p>Score: ${data.imdbRating} </p>
                         <img src="${data.Poster}" width="200"/>
                     </div>
                 `;
@@ -36,7 +36,7 @@ async function film(){
             }catch(error){
                 movieDiv.innerHTML = `
                     <p style="color:red;">
-                         Error retrieving data. Check your internet connection... ⚠️
+                         Error retrieving data. Check your internet connection... 
                     </p>
                 `;
                 console.log(error);
