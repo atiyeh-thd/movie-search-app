@@ -3,11 +3,11 @@ async function film(){
             let movieDiv = document.getElementById("movie");
 
             if(!movieName){
-                document.getElementById("movie").innerHTML = `<p style="color:red;">لطفاً نام فیلم را وارد کنید</p>`;
+                document.getElementById("movie").innerHTML = `<p style="color:red;">Please enter the movie name</p>`;
                 return;
             }
 
-            movieDiv.innerHTML = `<p>⏳ در حال جستجو...</p>`;
+            movieDiv.innerHTML = `<p>Searching...⏳</p>`;
 
             try{
                 let response = await fetch(`https://www.omdbapi.com/?t=${movieName}&plot=full&apikey=961bfb5b`);
@@ -16,7 +16,7 @@ async function film(){
                 if(data.Response === "False"){
                     movieDiv.innerHTML = `
                         <p style="color:red; font-weight:bold;">
-                            ❌ فیلمی با این نام پیدا نشد
+                             No film with this name was found.❌
                         </p>
                     `;
                     return;
@@ -25,10 +25,10 @@ async function film(){
                 document.getElementById("movie").innerHTML = `
                     <div class="movie-card">
                         <h3>${data.Title}</h3>
-                        <p>سال: ${data.Year}</p>
-                        <p>ژانر: ${data.Genre}</p>
-                        <p>کارگردان: ${data.Director}</p>
-                        <p>امتیاز: ⭐ ${data.imdbRating}</p>
+                        <p>Year: ${data.Year}</p>
+                        <p>Genre: ${data.Genre}</p>
+                        <p>Director: ${data.Director}</p>
+                        <p>Score: ${data.imdbRating} ⭐</p>
                         <img src="${data.Poster}" width="200"/>
                     </div>
                 `;
@@ -36,7 +36,7 @@ async function film(){
             }catch(error){
                 movieDiv.innerHTML = `
                     <p style="color:red;">
-                        ⚠️ خطا در دریافت اطلاعات. اتصال اینترنت را بررسی کنید.
+                         Error retrieving data. Check your internet connection... ⚠️
                     </p>
                 `;
                 console.log(error);
